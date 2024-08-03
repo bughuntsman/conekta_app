@@ -1,6 +1,6 @@
 class ConektaApi
   class << self
-    def generate_payment_link(products, expires_at = nil, currency = 'MXN', customer_info = {})
+    def generate_payment_link(products, customer_info = {}, expires_at = nil, currency = 'MXN')
       api_instance = Conekta::PaymentLinkApi.new
       checkout = Conekta::Checkout.new(
         { 
@@ -11,12 +11,8 @@ class ConektaApi
           order_template: Conekta::CheckoutOrderTemplate.new(
             {
               currency: currency, 
-              line_items: [Conekta::Product.new({name: 'Box of Cohiba S1s', quantity: 1, unit_price: 20000})],
-              customer_info: {
-                email: "isaiasdelahoz@gmail.com",
-                name: "miguel perez",
-                phone: "5215555555555"
-              }
+              line_items: conekta_product(products),
+              customer_info: customer_info
             }
           ),
           recurrent: false,
@@ -25,14 +21,11 @@ class ConektaApi
       ) # Checkout | requested field for checkout
 
       opts = {
-        #accept_language: 'es', # String | Use for knowing which language to use
-        #x_child_company_id: '6441b6376b60c3a638da80af' # String | In the case of a holding company, the company id of the child company to which will process the request.
       }
 
       begin
         # Create Unique Payment Link
-        result = api_instance.create_checkout(checkout, opts)
-        p result
+        api_instance.create_checkout(checkout, opts)
       rescue Conekta::ApiError => e
         puts "Error when calling PaymentLinkApi->create_checkout: #{e}"
       end
