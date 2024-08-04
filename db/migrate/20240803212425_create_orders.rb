@@ -2,6 +2,7 @@ class CreateOrders < ActiveRecord::Migration[7.1]
   def change
     create_table :orders do |t|
       t.string :status
+      t.string :currency
       t.integer :amount
       t.string :checkout_id
       t.string :payment_link

@@ -9,6 +9,7 @@ class OrderGenerator
     @order = Order.create(
       status: "pending",
       amount: amount,
+      currency: currency,
       checkout_id: payment_link.id,
       payment_link: payment_link.url
     )
@@ -40,5 +41,9 @@ class OrderGenerator
 
   def customer_atrr
     orders_params[:customer_info]
+  end
+
+  def currency
+    orders_params[:currency] || 'MXN'
   end
 end
