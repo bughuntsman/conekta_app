@@ -14,6 +14,8 @@ class OrderGenerator
     )
   end
 
+  private
+
   def amount
     products.sum { |product| product[:unit_price] * product[:quantity] }
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_03_212425) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_04_135558) do
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "status"
     t.integer "amount"
@@ -18,6 +18,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_212425) do
     t.string "payment_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders_products", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["order_id", "product_id"], name: "index_orders_products_on_order_id_and_product_id"
+    t.index ["product_id", "order_id"], name: "index_orders_products_on_product_id_and_order_id"
   end
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
