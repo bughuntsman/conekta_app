@@ -1,7 +1,7 @@
 class ConektaApi
   class << self
     def generate_payment_link(products, customer_info = {}, expires_at = nil, currency = 'MXN')
-      api_instance = Conekta::PaymentLinkApi.new
+    api_instance = Conekta::PaymentLinkApi.new
       checkout = Conekta::Checkout.new(
         { 
           allowed_payment_methods: ["cash", "card", "bank_transfer"], 

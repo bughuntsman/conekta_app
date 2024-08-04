@@ -1,4 +1,6 @@
 class OrderGenerator
+  attr :orders_params
+
   def initialize(orders_params)
     @orders_params = orders_params
   end
@@ -13,14 +15,11 @@ class OrderGenerator
   end
 
   def amount
-    products.each do |product|
-      amount += product[:unit_price] * product[:quantity]
-    end
-    amount
+    products.sum { |product| product[:unit_price] * product[:quantity] }
   end
 
   def payment_link
-    @link ||= ConektaApi.generate_payment_link(products, customer_info = customer_info)
+    @link ||= ConektaApi.generate_payment_link(products, customer_info = customer_atrr)
   end
 
   def products
@@ -31,7 +30,7 @@ class OrderGenerator
     end
   end
 
-  def customer_info
+  def customer_atrr
     orders_params[:customer_info]
   end
 end
