@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show, :create, :update, :destroy]
       resources :orders, only: [:create]
-
-      post 'webhook/conekta', to: 'webhooks#conekta'
     end
   end
+
+  post 'webhook/conekta', to: 'webhooks#conekta'
 end

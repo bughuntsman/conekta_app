@@ -9,7 +9,7 @@ class OrderGenerator
     @order = Order.create(
       status: "pending",
       amount: amount,
-      charge_id: payment_link.slug, 
+      charge_id: payment_link.id,
       payment_link: payment_link.url
     )
 
