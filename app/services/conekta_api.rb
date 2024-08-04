@@ -9,7 +9,7 @@ class ConektaApi
           needs_shipping_contact: false,
           order_template: Conekta::CheckoutOrderTemplate.new(
             {
-              currency: currency, 
+              currency: currency,
               line_items: conekta_product(products),
               customer_info: customer_info
             }
@@ -18,11 +18,8 @@ class ConektaApi
           type: 'PaymentLink'
         }
       )
-      begin
-        api_instance.create_checkout(checkout, {})
-      rescue Conekta::ApiError => e
-        puts "Error when calling PaymentLinkApi->create_checkout: #{e}"
-      end
+
+      api_instance.create_checkout(checkout, {})
     end
 
     private
