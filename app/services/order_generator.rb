@@ -6,15 +6,21 @@ class OrderGenerator
   end
 
   def execute
-    Order.create(
+    @order = Order.create(
       status: "pending",
       amount: amount,
       charge_id: payment_link.slug, 
       payment_link: payment_link.url
     )
+
+    assing_products_to_order
   end
 
   private
+
+  def assing_products_to_order
+    return @order if @order.update!(product_ids: orders_params[:products].pluck(:id))
+  end
 
   def amount
     products.sum { |product| product[:unit_price] * product[:quantity] }
