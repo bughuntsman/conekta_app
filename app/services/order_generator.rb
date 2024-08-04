@@ -9,7 +9,7 @@ class OrderGenerator
     @order = Order.create(
       status: "pending",
       amount: amount,
-      currency: currency,
+      currency: order_currency,
       checkout_id: payment_link.id,
       payment_link: payment_link.url
     )
@@ -28,7 +28,9 @@ class OrderGenerator
   end
 
   def payment_link
-    @link ||= ConektaApi.generate_payment_link(products, customer_info = customer_atrr)
+    @link ||= ConektaApi.generate_payment_link(
+      products, customer_info = customer_atrr, currency = order_currency
+    )
   end
 
   def products
@@ -43,7 +45,7 @@ class OrderGenerator
     orders_params[:customer_info]
   end
 
-  def currency
+  def order_currency
     orders_params[:currency] || 'MXN'
   end
 end
