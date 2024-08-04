@@ -1,6 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "Webhooks", type: :request do
+RSpec.describe "WebhooksController", type: :request do
+  let!(:order) { 
+    create(:order, 
+      status: "pending", 
+      checkout_id: "f96384c9-5d5e-400a-8621-a2bf598d30d5"
+    ) 
+  }
+
   let(:webhook_params) do
     {data:
       {object:
@@ -35,6 +42,12 @@ RSpec.describe "Webhooks", type: :request do
       post "/webhook/conekta", params: webhook_params.to_json
 
       expect(response).to have_http_status(:success)
+    end
+
+    it "returns http success" do
+      post "/webhook/conekta", params: webhook_params.to_json
+
+      expect(order.reload.status).to eq("paid")
     end
   end
 end
