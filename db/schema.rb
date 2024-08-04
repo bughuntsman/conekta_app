@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_04_135558) do
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "status"
     t.integer "amount"
-    t.string "charge_id"
+    t.string "checkout_id"
     t.string "payment_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
