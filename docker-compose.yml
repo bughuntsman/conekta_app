@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app_production
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RUBY_VERSION: 3.3.0
+    volumes:
+      - .:/rails
+      - gem_cache:/usr/local/bundle
+    environment:
+      RAILS_ENV: production
+      DATABASE_URL: mysql2://appuser:apppassword@db/app_production
+      SECRET_KEY_BASE: your_secret_key_base
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+  gem_cache:
