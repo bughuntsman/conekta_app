@@ -1,3 +1,87 @@
+# API Documentation
+
+## Descripción General
+
+Este documento describe las rutas y acciones disponibles para los controladores `ProductsController` y `OrdersController` dentro del módulo `Api::V1` de la aplicación.
+
+## Controlador `ProductsController`
+
+### Rutas
+
+- `GET /api/v1/products` - Listar todos los productos.
+- `GET /api/v1/products/:id` - Mostrar un producto específico.
+- `POST /api/v1/products` - Crear un nuevo producto.
+- `PUT /api/v1/products/:id` - Actualizar un producto existente.
+- `DELETE /api/v1/products/:id` - Eliminar un producto.
+
+### Acciones
+
+#### index
+
+- **Descripción**: Devuelve una lista de todos los productos.
+- **Método HTTP**: `GET`
+- **Ruta**: `/api/v1/products`
+- **Respuesta Exitosa**:
+  - **Código**: `200 OK`
+  - **Cuerpo**:
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "Product 1",
+        "price": 100,
+        "created_at": "2023-08-01T00:00:00Z",
+        "updated_at": "2023-08-01T00:00:00Z"
+      },
+      {
+        "id": 2,
+        "name": "Product 2",
+        "price": 200,
+        "created_at": "2023-08-02T00:00:00Z",
+        "updated_at": "2023-08-02T00:00:00Z"
+      }
+    ]
+    ```
+
+#### show
+
+- **Descripción**: Devuelve los detalles de un producto específico.
+- **Método HTTP**: `GET`
+- **Ruta**: `/api/v1/products/:id`
+- **Parámetros de Ruta**:
+  - `id`: ID del producto que se desea obtener.
+- **Respuesta Exitosa**:
+  - **Código**: `200 OK`
+  - **Cuerpo**:
+    ```json
+    {
+      "id": 1,
+      "name": "Product 1",
+      "price": 100,
+      "created_at": "2023-08-01T00:00:00Z",
+      "updated_at": "2023-08-01T00:00:00Z"
+    }
+    ```
+
+#### create
+
+- **Descripción**: Crea un nuevo producto.
+- **Método HTTP**: `POST`
+- **Ruta**: `/api/v1/products`
+- **Parámetros del Cuerpo**:
+  - `product`: Objeto que contiene los atributos del producto.
+    - `name`: Nombre del producto (requerido).
+    - `price`: Precio del producto (requerido).
+- **Ejemplo de Solicitud**:
+  ```json
+  {
+    "product": {
+      "name": "New Product",
+      "price": 150
+    }
+  }
+
+
 # README
 
 This README would normally document whatever steps are necessary to get the
