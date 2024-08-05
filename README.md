@@ -22,3 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<img width="705" alt="Screenshot 2024-08-05 at 07 36 16" src="https://github.com/user-attachments/assets/5b2f1508-a0bf-40c2-889e-238b1c6f1fc2">
