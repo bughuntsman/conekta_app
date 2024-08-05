@@ -4,9 +4,9 @@ require 'conekta'
 # Setup authorization
 Conekta.configure do |config|
   # Configure Bearer authorization: bearerAuth
-  config.access_token = 'Bearer key_nhBdElDQSWTYbMzRbIU5DOL'
+  config.access_token = ENV['API_KEY']
   # Configure a proc to get access tokens in lieu of the static access_token configuration
-  config.access_token_getter = -> { 'key_nhBdElDQSWTYbMzRbIU5DOL' } 
+  config.access_token_getter = -> { ENV['API_KEY'] }
   # Configure faraday connection
   config.configure_faraday_connection { |connection| 'YOUR CONNECTION CONFIG PROC' }
 end
