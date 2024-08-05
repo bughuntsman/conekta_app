@@ -82,28 +82,54 @@ Este documento describe las rutas y acciones disponibles para los controladores 
   }
 
 
-# README
+## Descripción General
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este documento describe el endpoint disponible en el controlador `OrdersController` dentro del módulo `Api::V1` de la aplicación.
 
-Things you may want to cover:
+## Controlador `OrdersController`
 
-* Ruby version
+### Rutas
 
-* System dependencies
+- `POST /api/v1/orders` - Crear un nuevo pedido.
 
-* Configuration
+### Acciones
 
-* Database creation
+#### create
 
-* Database initialization
+- **Descripción**: Crea un nuevo pedido.
+- **Método HTTP**: `POST`
+- **Ruta**: `/api/v1/orders`
+- **Parámetros del Cuerpo**:
+  - `order`: Objeto que contiene los atributos del pedido.
+    - `currency`: Moneda del pedido (requerido).
+    - `products`: Lista de productos en el pedido (requerido).
+      - `id`: ID del producto (requerido).
+      - `quantity`: Cantidad del producto (requerido).
+    - `customer_info`: Información del cliente (requerido).
+      - `email`: Correo electrónico del cliente (requerido).
+      - `name`: Nombre del cliente (requerido).
+      - `phone`: Teléfono del cliente (opcional).
 
-* How to run the test suite
+##### Ejemplo de Solicitud
+```json
+{
+  "order": {
+    "currency": "USD",
+    "products": [
+      {
+        "id": 1,
+        "quantity": 2
+      }
+    ],
+    "customer_info": {
+      "email": "customer@example.com",
+      "name": "John Doe",
+      "phone": "123456789"
+    }
+  }
+}
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+## Diagrama de la base de datos
 
 * ...
 <img width="705" alt="Screenshot 2024-08-05 at 07 36 16" src="https://github.com/user-attachments/assets/5b2f1508-a0bf-40c2-889e-238b1c6f1fc2">
