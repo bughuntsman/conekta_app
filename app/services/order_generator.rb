@@ -24,7 +24,7 @@ class OrderGenerator
   end
 
   def amount
-    products.sum { |product| product[:unit_price] * product[:quantity] }
+    products.sum { |product| product[:unit_price] * (product[:quantity].to_i) }
   end
 
   def payment_link
@@ -37,7 +37,7 @@ class OrderGenerator
     orders_params[:products].map do |product|
       item = Product.find(product[:id])
 
-      {name: item.name, quantity: product[:quantity], unit_price: item.price}
+      {name: item.name, quantity: product[:quantity].to_i, unit_price: item.price}
     end
   end
 

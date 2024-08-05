@@ -4,14 +4,16 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create
-        OrderGenerator.new(orders_params).execute
+        @order = OrderGenerator.new(orders_params).execute
+
+        render json: @order
       end
 
-      private 
+      private
 
       def orders_params
         params.require(:order).permit(:currency,
-          products: [:id, :quantity], 
+          products: [:id, :quantity],
           customer_info: [:email, :name, :phone]
         )
       end

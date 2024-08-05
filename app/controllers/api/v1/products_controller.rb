@@ -1,6 +1,7 @@
 module Api
   module V1
     class ProductsController < ApplicationController
+      skip_before_action :verify_authenticity_token
       before_action :set_product, only: [:show, :update, :destroy]
 
       def index
@@ -15,7 +16,7 @@ module Api
       def create
         @product = Product.new(product_params)
         if @product.save
-          render json: @product, status: :created, location: api_v1_product_url(@product)
+          render json: @product, status: :created
         else
           render json: @product.errors, status: :unprocessable_entity
         end
@@ -40,7 +41,7 @@ module Api
       end
 
       def product_params
-        params.require(:product).permit(:name, :description, :price)
+        params.require(:product).permit(:name, :price)
       end
     end
   end
