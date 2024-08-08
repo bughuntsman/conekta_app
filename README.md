@@ -130,8 +130,7 @@ Este documento describe el endpoint disponible en el controlador `OrdersControll
 }
 ```
 ## Postman collection
-https://api.postman.com/collections/5470141-bab50702-33b9-4d6b-a734-a1e3ab3eb522?access_key=PMAT-01J4HM0NFPKWDQWCM732JJM10Q
-
+https://api.postman.com/collections/5470141-bab50702-33b9-4d6b-a734-a1e3ab3eb522?access_key="key-example"
 ## Diagrama de la base de datos
 * ...
 <img width="705" alt="Screenshot 2024-08-05 at 07 36 16" src="https://github.com/user-attachments/assets/5b2f1508-a0bf-40c2-889e-238b1c6f1fc2">
