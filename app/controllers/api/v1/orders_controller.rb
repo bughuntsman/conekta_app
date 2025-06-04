@@ -12,7 +12,7 @@ module Api
       private
 
       def orders_params
-        params.require(:order).permit(:currency, :ssdkf,
+        params.require(:order).permit(:currency, :aaaaa,
           products: [:id, :quantity],
           customer_info: [:email, :name, :phone]
         )
